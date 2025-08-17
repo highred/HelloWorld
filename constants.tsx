@@ -120,13 +120,26 @@ export const TUTORIAL_STEPS: Step[] = [
         <CodeBlock code={insertDataSql} language="sql" />
         <ol className="list-decimal list-inside space-y-3 pl-4" start={6}>
             <li>
-                Finally, let's get your API keys. Navigate to <span className="font-semibold text-white">Project Settings</span> (the gear icon) &gt; <span className="font-semibold text-white">API</span>.
-                <br />
-                You will need two values for your backend later:
-                <ul className="list-disc list-inside mt-2 pl-6 bg-base-300 p-3 rounded-md">
-                    <li><span className="font-semibold text-white">Project URL</span></li>
-                    <li>The <span className="font-semibold text-white">Project API Key</span> that says `anon` and `public`.</li>
-                </ul>
+                Finally, let's get your API credentials. This is a common place to get tripped up, so follow carefully!
+                <ol className="list-[lower-alpha] list-inside space-y-2 mt-2 pl-4">
+                    <li>In the Supabase dashboard, click on <span className="font-semibold text-white">Project Settings</span> (the gear icon ⚙️ in the bottom-left sidebar).</li>
+                    <li>In the settings menu, click on <span className="font-semibold text-white">Data API</span>. This is the correct page!</li>
+                </ol>
+                 <div className="p-3 my-2 rounded-lg bg-red-900/30 border border-red-500/50">
+                    <p className="font-bold text-red-300">Important!</p>
+                    <p className="text-red-200">You are on the correct page. Do <span className="font-bold">not</span> go to the "Database" settings page; the connection strings there (starting with <code className="font-mono text-sm">postgresql://</code>) are incorrect for this tutorial.</p>
+                </div>
+                On the <span className="font-semibold text-white">Data API</span> page, you'll find and copy two values for your backend. The page has two main sections:
+                <div className="space-y-3 mt-3">
+                  <div className="bg-base-300 p-3 rounded-md">
+                    <p className="font-semibold text-white">1. Project URL</p>
+                    <p className="text-sm text-content">Located at the <span className="font-bold">top of the page</span>. Copy this value.</p>
+                  </div>
+                  <div className="bg-base-300 p-3 rounded-md">
+                    <p className="font-semibold text-white">2. Project API Key</p>
+                    <p className="text-sm text-content">Below the URL, find the "Project API keys" section and copy the key labeled `anon` and `public`.</p>
+                  </div>
+                </div>
                 Keep this browser tab open. You'll need to copy these in the next part.
             </li>
         </ol>
@@ -150,7 +163,41 @@ export const TUTORIAL_STEPS: Step[] = [
         <CodeBlock code={backendIndexJs} language="javascript" />
         <ol className="list-decimal list-inside space-y-3 pl-4" start={4}>
             <li>Create a new, empty repository on your <a href="https://github.com/new" target="_blank" rel="noopener noreferrer" className="text-brand-primary hover:underline">GitHub</a> account.</li>
-            <li>Push the `hello-world-backend` folder (with your two new files) to this new GitHub repository.</li>
+            <li>
+                Push your new folder to GitHub using the command line. This is a crucial developer skill!
+                <div className="p-3 my-2 rounded-lg bg-yellow-900/30 border border-yellow-500/50">
+                    <p className="font-bold text-yellow-300">Prerequisite:</p>
+                    <p className="text-yellow-200">You must have <a href="https://git-scm.com/downloads" target="_blank" rel="noopener noreferrer" className="text-brand-primary hover:underline">Git</a> installed on your computer for these commands to work.</p>
+                </div>
+                <p className="mt-2">Open your terminal (e.g., Command Prompt, PowerShell, or Terminal on Mac) and run the following commands one by one inside your `hello-world-backend` folder.</p>
+                <ol className="list-disc list-inside space-y-2 mt-4 pl-4">
+                    <li>
+                        <p>Initialize a new Git repository. This turns your folder into a Git project.</p>
+                        <CodeBlock code={'git init'} language="bash" />
+                    </li>
+                    <li>
+                        <p>Add all your files to be tracked by Git.</p>
+                        <CodeBlock code={'git add .'} language="bash" />
+                    </li>
+                    <li>
+                        <p>Create your first "commit" (a snapshot or save-point of your code).</p>
+                        <CodeBlock code={'git commit -m "Initial backend setup"'} language="bash" />
+                    </li>
+                    <li>
+                        <p>Rename the default branch to `main`. Older versions of Git used `master`, but `main` is the new standard.</p>
+                        <CodeBlock code={'git branch -M main'} language="bash" />
+                    </li>
+                    <li>
+                        <p>Connect your local folder to the empty repository you created on GitHub. Get the URL by going to your GitHub repo page, clicking the green "&lt;&gt; Code" button, and copying the HTTPS URL.</p>
+                        <CodeBlock code={'git remote add origin https://github.com/YOUR_USERNAME/YOUR_REPO_NAME.git'} language="bash" />
+                    </li>
+                    <li>
+                        <p>Push your code up to GitHub.</p>
+                        <CodeBlock code={'git push -u origin main'} language="bash" />
+                    </li>
+                </ol>
+                 <p className="mt-2">After running these commands, refresh your GitHub page. Your files will be there!</p>
+              </li>
             <li>Sign in to <a href="https://render.com" target="_blank" rel="noopener noreferrer" className="text-brand-primary hover:underline">Render</a> and create a <span className="font-semibold text-white">New Web Service</span>.</li>
             <li>Connect the GitHub repository you just created.</li>
             <li>Render will auto-detect most settings. Ensure the <span className="font-semibold text-white">Start Command</span> is `node index.js`.</li>
