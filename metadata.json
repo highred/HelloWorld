@@ -1,0 +1,5 @@
+{
+  "name": "Full-Stack Hello World Tutorial",
+  "description": "An interactive guide to deploying a complete full-stack 'Hello World' application using React, Node.js, Supabase, Render, and Vercel.",
+  "requestFramePermissions": []
+}
